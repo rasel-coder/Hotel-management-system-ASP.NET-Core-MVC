@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.RoomTypeModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BasePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxPersonAccept)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "RoomType", null, Context.Request.Scheme)', 'New RoomType')"
+                   class="btn btn-success text-white">
+                    Create New
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomTypeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BasePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxPersonAccept)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "RoomType", new { id = item.RoomTypeID }, Context.Request.Scheme)', 'Update RoomType')" class="btn btn-info text-white">
+                        Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.RoomTypeID" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@model HotelApp.Database.Feature
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <form  method="post" asp-action="AddOrEdit" asp-route-id="@Model.FeatureID" enctype="multipart/form-data" onsubmit="return jQueryAjaxPost(this);" autocomplete="off" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="FeatureID" />
+            <div class="form-group">
+                <label asp-for="FeatureName" class="control-label"></label>
+                <input asp-for="FeatureName" class="form-control" />
+                <span asp-validation-for="FeatureName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Icon" type="hidden" />
+                <div class="col-md-12 text-center">
+                    <img src="@Url.Content(Model.Icon)" style="margin:10px" height="200" width="200" id="imagePreview" class="img-thumbnail" />
+                    <input asp-for="IconUpload" name="IconUpload" accept="image/jpeg, image/png" class="img-thumbnail" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

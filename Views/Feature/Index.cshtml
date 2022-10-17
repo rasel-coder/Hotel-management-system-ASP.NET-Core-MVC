@@ -1,0 +1,12 @@
+﻿
+@model IEnumerable<HotelApp.Database.Feature>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center"> Feature</h1>
+
+<div id="view-all">
+    @await Html.PartialAsync("_FeaturePartial", Model)
+</div>

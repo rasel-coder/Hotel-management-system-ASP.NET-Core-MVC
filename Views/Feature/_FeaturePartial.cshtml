@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<HotelApp.Database.Feature>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeatureName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Feature", null, Context.Request.Scheme)', 'New Feature')"
+                   class="btn btn-success text-white"> Create New
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeatureID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FeatureName)
+                </td>
+                <td>
+                    <img src="@item.Icon" alt="Photo" class="img-thumbnail" width="80" height="100" />
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Feature", new { id = item.FeatureID }, Context.Request.Scheme)', 'Update Feature')" class="btn btn-info text-white">
+                        Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.FeatureID" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

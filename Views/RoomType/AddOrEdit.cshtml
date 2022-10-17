@@ -1,0 +1,51 @@
+﻿
+@model HotelApp.ViewModel.RoomTypeModel
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="AddOrEdit" asp-route-id="@Model.RoomTypeID" enctype="multipart/form-data" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RoomTypeID" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BasePrice" class="control-label"></label>
+                <input asp-for="BasePrice" class="form-control" />
+                <span asp-validation-for="BasePrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxPersonAccept" class="control-label"></label>
+                <input asp-for="MaxPersonAccept" class="form-control" />
+                <span asp-validation-for="MaxPersonAccept" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureID" class="control-label" ></label>
+                <select asp-for="FeatureID" asp-items="ViewBag.feature" class="form-control">
+                    <option value="">-- Select Feature --</option>
+                </select>
+                <span asp-validation-for="FeatureID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

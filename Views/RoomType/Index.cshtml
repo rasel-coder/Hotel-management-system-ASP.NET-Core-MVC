@@ -1,0 +1,12 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.RoomTypeModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Room Type</h1>
+
+<div id="view-all">
+    @await Html.PartialAsync("_RoomTypePartial", Model)
+</div>
