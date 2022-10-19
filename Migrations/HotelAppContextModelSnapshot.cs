@@ -37,6 +37,55 @@ namespace HotelApp.Migrations
                     b.ToTable("Feature");
                 });
 
+            modelBuilder.Entity("HotelApp.Database.Room", b =>
+                {
+                    b.Property<int>("RoomID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoomNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomTypeID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RoomTypeID1")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomID");
+
+                    b.HasIndex("RoomTypeID1");
+
+                    b.ToTable("Room");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.RoomImages", b =>
+                {
+                    b.Property<int>("ImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("RoomID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ImageID");
+
+                    b.HasIndex("RoomID");
+
+                    b.ToTable("RoomImages");
+                });
+
             modelBuilder.Entity("HotelApp.Database.RoomType", b =>
                 {
                     b.Property<int>("RoomTypeID")
@@ -50,7 +99,7 @@ namespace HotelApp.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("FeatureID")
+                    b.Property<int>("FeatureID")
                         .HasColumnType("int");
 
                     b.Property<int?>("MaxPersonAccept")
@@ -66,11 +115,33 @@ namespace HotelApp.Migrations
                     b.ToTable("RoomType");
                 });
 
+            modelBuilder.Entity("HotelApp.Database.Room", b =>
+                {
+                    b.HasOne("HotelApp.Database.RoomType", "RoomType")
+                        .WithMany()
+                        .HasForeignKey("RoomTypeID1");
+
+                    b.Navigation("RoomType");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.RoomImages", b =>
+                {
+                    b.HasOne("HotelApp.Database.Room", "Room")
+                        .WithMany("RoomImages")
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
             modelBuilder.Entity("HotelApp.Database.RoomType", b =>
                 {
                     b.HasOne("HotelApp.Database.Feature", "Feature")
                         .WithMany("RoomTypes")
-                        .HasForeignKey("FeatureID");
+                        .HasForeignKey("FeatureID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Feature");
                 });
@@ -78,6 +149,11 @@ namespace HotelApp.Migrations
             modelBuilder.Entity("HotelApp.Database.Feature", b =>
                 {
                     b.Navigation("RoomTypes");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Room", b =>
+                {
+                    b.Navigation("RoomImages");
                 });
 #pragma warning restore 612, 618
         }

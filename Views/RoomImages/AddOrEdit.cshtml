@@ -1,0 +1,38 @@
+﻿
+@model HotelApp.ViewModel.RoomImagesModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+}
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <form method="post" asp-action="AddOrEdit" asp-route-id="@Model.ImageID" enctype="multipart/form-data" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ImageID" />
+            <div class="form-group">
+                <label asp-for="RoomID" class="control-label"></label>
+                <select asp-for="RoomID" asp-items="ViewBag.roomImages" class="form-control">
+                    <option value="">-- Select Feature --</option>
+                </select>
+                <span asp-validation-for="RoomID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="RoomImage" type="hidden" />
+                <div class="col-md-12 text-center">
+                    <img src="@Url.Content(Model.RoomImage)" style="margin:10px" height="200" width="200" id="imagePreview" class="img-thumbnail" />
+                    <input asp-for="RoomImageUpload" name="RoomImageUpload" accept="image/jpeg, image/png" class="img-thumbnail" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

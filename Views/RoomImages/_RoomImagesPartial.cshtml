@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.RoomImagesModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomImage)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "RoomImages", null, Context.Request.Scheme)', 'New Room Images')"
+                   class="btn btn-success text-white"> Add Image
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    <img src="@item.RoomImage" alt="Photo" class="img-thumbnail" width="80" height="100" />
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "RoomImages", new { id = item.ImageID }, Context.Request.Scheme)', 'Update Room Images')" class="btn btn-info text-white">
+                        Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.ImageID" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

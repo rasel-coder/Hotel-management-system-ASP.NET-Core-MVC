@@ -12,5 +12,7 @@ namespace HotelApp.Database
         { }
         public DbSet<Feature> Feature { get; set; }
         public DbSet<RoomType> RoomType { get; set; }
+        public DbSet<RoomImages> RoomImages { get; set; }
+        public DbSet<Room> Room { get; set; }
     }
 }
