@@ -44,24 +44,21 @@ namespace HotelApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Available")
+                    b.Property<bool?>("Available")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoomNumber")
+                    b.Property<int?>("RoomNumber")
                         .HasColumnType("int");
 
-                    b.Property<string>("RoomTypeID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("RoomTypeID1")
+                    b.Property<int?>("RoomTypeID")
                         .HasColumnType("int");
 
                     b.HasKey("RoomID");
 
-                    b.HasIndex("RoomTypeID1");
+                    b.HasIndex("RoomTypeID");
 
                     b.ToTable("Room");
                 });
@@ -73,7 +70,7 @@ namespace HotelApp.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("RoomID")
+                    b.Property<int?>("RoomID")
                         .HasColumnType("int");
 
                     b.Property<string>("RoomImage")
@@ -119,7 +116,7 @@ namespace HotelApp.Migrations
                 {
                     b.HasOne("HotelApp.Database.RoomType", "RoomType")
                         .WithMany()
-                        .HasForeignKey("RoomTypeID1");
+                        .HasForeignKey("RoomTypeID");
 
                     b.Navigation("RoomType");
                 });
@@ -128,9 +125,7 @@ namespace HotelApp.Migrations
                 {
                     b.HasOne("HotelApp.Database.Room", "Room")
                         .WithMany("RoomImages")
-                        .HasForeignKey("RoomID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoomID");
 
                     b.Navigation("Room");
                 });

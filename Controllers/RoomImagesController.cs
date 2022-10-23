@@ -28,7 +28,8 @@ namespace HotelApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RoomImages.ToListAsync());
+            //var data = await _roomImagesRepository.GetAllRoomImages();
+            return View();
         }
 
         public async Task<IActionResult> AddOrEdit(RoomImagesModel model, int id = 0)

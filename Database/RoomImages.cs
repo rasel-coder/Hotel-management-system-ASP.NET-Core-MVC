@@ -10,7 +10,7 @@ namespace HotelApp.Database
     {
         [Key]
         public int ImageID { get; set; }
-        public int RoomID { get; set; }
+        public int? RoomID { get; set; }
         public string RoomImage { get; set; }
         public virtual Room Room { get; set; }
     }

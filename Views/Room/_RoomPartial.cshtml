@@ -1,0 +1,60 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.RoomModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Available)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Room", null, Context.Request.Scheme)', 'New Room')"
+                   class="btn btn-success text-white">
+                    Create New
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Available)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("AddOrEdit", "Room", new { id = item.RoomID }, Context.Request.Scheme)', 'Update Room')" class="btn btn-info text-white">
+                        Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.RoomID" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,10 +11,10 @@ namespace HotelApp.Database
     {
         [Key]
         public int RoomID { get; set; }
-        public int RoomNumber { get; set; }
-        public string RoomTypeID { get; set; }
+        public int? RoomNumber { get; set; }
+        public int? RoomTypeID { get; set; }
         public virtual RoomType RoomType { get; set; }
-        public bool Available { get; set; }
+        public bool? Available { get; set; }
         public string Description { get; set; }
         public virtual ICollection<RoomImages> RoomImages { get; set; }
         //public virtual ICollection<Review> Reviews { get; set; }

@@ -68,11 +68,6 @@ namespace HotelApp.Controllers
             return Json(new { html = Helper.RenderRazorViewToString(this, "_RoomTypePartial", _context.RoomType.ToList()) });
         }
 
-        private bool RoomTypeModelExists(int id)
-        {
-            return _context.RoomType.Any(e => e.RoomTypeID == id);
-        }
-
         //private async Task<List<RoomType>> GetData()
         //{
         //    var roomTypes = new List<RoomType>();

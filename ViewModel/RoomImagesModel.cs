@@ -9,8 +9,8 @@ namespace HotelApp.ViewModel
     public class RoomImagesModel
     {
         public int ImageID { get; set; }
-        public int RoomID { get; set; }
-        public int RoomNumber { get; set; }
+        public int? RoomID { get; set; }
+        public int? RoomNumber { get; set; }
         public string RoomImage { get; set; }
         public IFormFile RoomImageUpload { get; set; }
     }

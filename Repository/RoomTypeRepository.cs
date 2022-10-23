@@ -80,7 +80,7 @@ namespace HotelApp.Repository
                                       x.MaxPersonAccept,
                                       y.FeatureName,
                                       x.Description
-                                  }).ToListAsync(); ;
+                                  }).ToListAsync();
             if (allRoomTypes?.Any() == true)
             {
                 foreach (var roomType in allRoomTypes)
