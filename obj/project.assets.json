@@ -7250,23 +7250,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ra634\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\nahid\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\BACKUP TSP\\GitHub\\Hotel-Management-System\\HotelApp.csproj",
+      "projectUniqueName": "E:\\Github\\HotelApp.csproj",
       "projectName": "HotelApp",
-      "projectPath": "F:\\BACKUP TSP\\GitHub\\Hotel-Management-System\\HotelApp.csproj",
-      "packagesPath": "C:\\Users\\ra634\\.nuget\\packages\\",
-      "outputPath": "F:\\BACKUP TSP\\GitHub\\Hotel-Management-System\\obj\\",
+      "projectPath": "E:\\Github\\HotelApp.csproj",
+      "packagesPath": "C:\\Users\\nahid\\.nuget\\packages\\",
+      "outputPath": "E:\\Github\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ra634\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nahid\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7340,7 +7342,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
       }
     }
   }
