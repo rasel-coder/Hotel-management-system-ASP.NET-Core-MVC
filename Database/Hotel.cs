@@ -10,7 +10,7 @@ namespace HotelApp.Database
     {
         [Key]
         public int Id { get; set; }
-        public int? Flood { get; set; }
+        public int? Floor { get; set; }
         public int? Room { get; set; }
     }
 }

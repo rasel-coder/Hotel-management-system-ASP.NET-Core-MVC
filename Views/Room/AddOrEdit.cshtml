@@ -24,10 +24,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Available" class="control-label"></label><br />
-                <input asp-for="Available" type="radio" name="availability" value="Available" />Available<br />
-                <input asp-for="Available" type="radio" name="availability" value="Booked" />Booked<br />
+                <input type="radio" value="Available" name="Available" />Available
+                <input type="radio" value="Booked" name="Available" />Booked<br />
                 <span asp-validation-for="Available" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />

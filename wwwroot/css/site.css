@@ -62,6 +62,7 @@ body {
     /* Margin bottom by footer height */
     background: #071E22;
     font-family: 'Roboto', sans-serif;
+    color: #000;
 }
 .footer {
     position: absolute;

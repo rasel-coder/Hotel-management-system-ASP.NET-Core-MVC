@@ -15,6 +15,7 @@ namespace HotelApp.Database
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }
         public int? CustomerId { get; set; }
+        public Customer Customer { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal? DailyPrice { get; set; }
         [Column(TypeName = "decimal(18,2)")]

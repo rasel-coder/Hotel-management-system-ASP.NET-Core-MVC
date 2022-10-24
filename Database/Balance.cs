@@ -12,6 +12,7 @@ namespace HotelApp.Database
         [Key]
         public int Id { get; set; }
         public int? CustomerId { get; set; }
+        public Customer Customer { get; set; }
         public int? PaymentMethod { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal? Amount { get; set; }
