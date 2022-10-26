@@ -32,6 +32,8 @@ namespace HotelApp
             services.AddScoped<RoomTypeRepository, RoomTypeRepository>();
             services.AddScoped<RoomImagesRepository, RoomImagesRepository>();
             services.AddScoped<RoomRepository, RoomRepository>();
+            services.AddScoped<CustomerRepository, CustomerRepository>();
+            services.AddScoped<HotelRepository, HotelRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

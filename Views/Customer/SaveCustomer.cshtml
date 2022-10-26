@@ -1,0 +1,39 @@
+﻿
+@model HotelApp.ViewModel.CustomerModel
+
+@{
+    ViewData["Title"] = "SaveCustomer";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="SaveCustomer" asp-route-id="@Model.CustomerId" enctype="multipart/form-data" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CustomerId" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

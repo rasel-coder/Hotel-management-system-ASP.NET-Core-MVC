@@ -19,6 +19,85 @@ namespace HotelApp.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("HotelApp.Database.Balance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Balance");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Booking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("DailyPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("FromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("IsPaid")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("RoomNum")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ToDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal?>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Booking");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mobile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customer");
+                });
+
             modelBuilder.Entity("HotelApp.Database.Feature", b =>
                 {
                     b.Property<int>("FeatureID")
@@ -35,6 +114,125 @@ namespace HotelApp.Migrations
                     b.HasKey("FeatureID");
 
                     b.ToTable("Feature");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Hotel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Floor")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Room")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Hotel");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.MoneyBack", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TranId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("MoneyBack");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal?>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.PaymentMethod", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("MethodName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentMethod");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.PaymentTran", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("TranDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TranId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("PaymentTran");
                 });
 
             modelBuilder.Entity("HotelApp.Database.Room", b =>
@@ -110,6 +308,57 @@ namespace HotelApp.Migrations
                     b.HasIndex("FeatureID");
 
                     b.ToTable("RoomType");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Balance", b =>
+                {
+                    b.HasOne("HotelApp.Database.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Booking", b =>
+                {
+                    b.HasOne("HotelApp.Database.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.MoneyBack", b =>
+                {
+                    b.HasOne("HotelApp.Database.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.Payment", b =>
+                {
+                    b.HasOne("HotelApp.Database.Booking", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("HotelApp.Database.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("HotelApp.Database.PaymentTran", b =>
+                {
+                    b.HasOne("HotelApp.Database.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("HotelApp.Database.Room", b =>

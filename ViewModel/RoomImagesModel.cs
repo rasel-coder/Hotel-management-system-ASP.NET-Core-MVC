@@ -8,6 +8,11 @@ namespace HotelApp.ViewModel
 {
     public class RoomImagesModel
     {
+        public RoomImagesModel()
+        {
+            RoomImage = "~/image/default.png";
+        }
+
         public int ImageID { get; set; }
         public int? RoomID { get; set; }
         public int? RoomNumber { get; set; }

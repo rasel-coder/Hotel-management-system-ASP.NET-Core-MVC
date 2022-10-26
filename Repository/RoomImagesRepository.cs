@@ -24,13 +24,14 @@ namespace HotelApp.Repository
 
         public async Task<RoomImagesModel> GetRoomImagesById(int id)
         {
-            return await _context.RoomImages.Where(x => x.RoomID == id)
+            var data = await _context.RoomImages.Where(x => x.ImageID == id)
                 .Select(roomImage => new RoomImagesModel()
                 {
                     ImageID = roomImage.ImageID,
-                    RoomNumber = roomImage.Room.RoomNumber,
+                    RoomID = roomImage.RoomID,
                     RoomImage = roomImage.RoomImage
                 }).FirstOrDefaultAsync();
+            return data;
         }
 
         public async Task<int> AddOrEditRoomImages(RoomImagesModel model)
@@ -66,44 +67,28 @@ namespace HotelApp.Repository
         public async Task<IEnumerable<RoomImagesModel>> GetAllRoomImages()
         {
             var roomImages = new List<RoomImagesModel>();
-            var allRoomTypes = await _context.RoomImages.ToListAsync();
-            if (allRoomTypes?.Any() == true)
+            var allRoomImages = await (from x in _context.RoomImages
+                                       join y in _context.Room
+                                       on x.RoomID equals y.RoomID
+                                       select new
+                                       {
+                                           x.ImageID,
+                                           x.Room.RoomNumber,
+                                           x.RoomImage
+                                       }).ToListAsync();
+            if (allRoomImages?.Any() == true)
             {
-                foreach (var roomType in allRoomTypes)
+                foreach (var roomImage in allRoomImages)
                 {
                     roomImages.Add(new RoomImagesModel()
                     {
-                        ImageID = roomType.ImageID,
-                        RoomNumber = roomType.Room.RoomNumber,
-                        RoomImage = roomType.RoomImage
+                        ImageID = roomImage.ImageID,
+                        RoomNumber = roomImage.RoomNumber,
+                        RoomImage = roomImage.RoomImage
                     });
                 }
             }
             return roomImages;
-
-            //var roomImages = new List<RoomImagesModel>();
-            //var allRoomImages = await (from x in _context.RoomImages
-            //                           join y in _context.Room
-            //                           on x.RoomID equals y.RoomID
-            //                           select new
-            //                           {
-            //                               x.ImageID,
-            //                               x.Room.RoomNumber,
-            //                               x.RoomImage
-            //                           }).ToListAsync(); ;
-            //if (allRoomImages?.Any() == true)
-            //{
-            //    foreach (var roomImage in allRoomImages)
-            //    {
-            //        roomImages.Add(new RoomImagesModel()
-            //        {
-            //            ImageID = roomImage.ImageID,
-            //            RoomNumber = roomImage.RoomNumber,
-            //            RoomImage = roomImage.RoomImage
-            //        });
-            //    }
-            //}
-            //return roomImages;
         }
     }
 }

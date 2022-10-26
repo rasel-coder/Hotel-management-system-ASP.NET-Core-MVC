@@ -8,6 +8,11 @@ namespace HotelApp.Database
 {
     public class RoomImages
     {
+        public RoomImages()
+        {
+            RoomImage = "~/image/default.png";
+        }
+
         [Key]
         public int ImageID { get; set; }
         public int? RoomID { get; set; }

@@ -20,16 +20,18 @@ namespace HotelApp.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
 
         public RoomImagesController(HotelAppContext context,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            RoomImagesRepository roomImagesRepository)
         {
             _context = context;
+            _roomImagesRepository = roomImagesRepository;
             _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index()
         {
-            //var data = await _roomImagesRepository.GetAllRoomImages();
-            return View();
+            var data = await _roomImagesRepository.GetAllRoomImages();
+            return View(data);
         }
 
         public async Task<IActionResult> AddOrEdit(RoomImagesModel model, int id = 0)
@@ -39,7 +41,7 @@ namespace HotelApp.Controllers
             {
                 roomImagesModel = await _roomImagesRepository.GetRoomImagesById(id);
             }
-            ViewBag.roomImages = new SelectList(await _context.Feature.ToListAsync(), "ImageID", "RoomNumber");
+            ViewBag.roomNumber = new SelectList(await _context.Room.ToListAsync(), "RoomID", "RoomNumber");
             return View(roomImagesModel);
         }
 
@@ -58,11 +60,28 @@ namespace HotelApp.Controllers
                     model.RoomImage = "/" + folder;
                     await model.RoomImageUpload.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
                 }
+                if (model.RoomID != 0)
+                {
+                    var addRoomImages = new RoomImages()
+                    {
+                        RoomID = model.RoomID,
+                        RoomImage = model.RoomImage
+                    };
+                    await _context.RoomImages.AddAsync(addRoomImages);
+                }
+                else
+                {
+                    RoomImages editRoomImages = new RoomImages();
+                    editRoomImages.RoomID = model.RoomID;
+                    editRoomImages.RoomImage = model.RoomImage;
+                    _context.RoomImages.Update(editRoomImages);
+                }
+                await _context.SaveChangesAsync();
 
-                await _roomImagesRepository.AddOrEditRoomImages(model);
+                //int data = await _roomImagesRepository.AddOrEditRoomImages(model);
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_RoomImagesPartial", _context.Feature.ToList()) });
             }
-            ViewBag.roomImages = new SelectList(await _context.Feature.ToListAsync(), "ImageID", "RoomNumber");
+            ViewBag.roomNumber = new SelectList(await _context.Room.ToListAsync(), "RoomID", "RoomNumber");
             return Json(new { isValid = false, html = Helper.RenderRazorViewToString(this, "AddOrEdit", model) });
         }
 

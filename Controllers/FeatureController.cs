@@ -60,22 +60,8 @@ namespace HotelApp.Controllers
                 }
                 else
                 {
-                    try
-                    {
-                        _context.Update(feature);
-                        await _context.SaveChangesAsync();
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!FeatureModelExists(feature.FeatureID))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
+                    _context.Update(feature);
+                    await _context.SaveChangesAsync();
                 }
 
                 return Json(new { isValid = true, html = Helper.RenderRazorViewToString(this, "_FeaturePartial", _context.Feature.ToList()) });
@@ -91,11 +77,6 @@ namespace HotelApp.Controllers
             _context.Feature.Remove(transactionModel);
             await _context.SaveChangesAsync();
             return Json(new { html = Helper.RenderRazorViewToString(this, "_FeaturePartial", _context.Feature.ToList()) });
-        }
-
-        private bool FeatureModelExists(int id)
-        {
-            return _context.Feature.Any(e => e.FeatureID == id);
         }
     }
 }
