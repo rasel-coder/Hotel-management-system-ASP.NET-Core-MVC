@@ -1,0 +1,28 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.BookingModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Booking</h1>
+
+<div id="view-all">
+    @await Html.PartialAsync("_BookingPartial", Model)
+
+    @section Scripts{
+
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf', 'print'
+                    ]
+                });
+            });
+
+        </script>
+    }
+</div>

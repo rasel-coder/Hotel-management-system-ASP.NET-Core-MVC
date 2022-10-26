@@ -12,11 +12,11 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel="stylesheet" />
     <!-- Custom styles for this template-->
     <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="~/css/site.css" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
 
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
@@ -71,11 +71,11 @@
 
             <!-- Nav Item - Booking -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class='bx bx-list-ul icon'></i>
-                    <span>Booking</span>
-                </a>
-            </li>
+                <a class="nav-link" asp-action="Index" asp-controller="Booking">
+                        <i class='bx bx-list-ul icon'></i>
+                        <span>Booking</span>
+                    </a>
+</li>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 

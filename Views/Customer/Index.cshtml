@@ -9,4 +9,20 @@
 
 <div id="view-all">
     @await Html.PartialAsync("_CustomerPartial", Model)
+
+    @section Scripts{
+
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+        </script>
+    }
 </div>

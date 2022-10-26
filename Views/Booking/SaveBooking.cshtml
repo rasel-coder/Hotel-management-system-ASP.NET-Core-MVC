@@ -1,0 +1,62 @@
+﻿
+@model HotelApp.ViewModel.BookingModel
+
+@{
+    ViewData["Title"] = "SaveBooking";
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post" asp-action="SaveBooking" asp-route-id="@Model.BookingId" enctype="multipart/form-data" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BookingId" />
+            <div class="form-group">
+                <label asp-for="RoomNum" class="control-label"></label>
+                <input asp-for="RoomNum" class="form-control" />
+                <span asp-validation-for="RoomNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FromDate" class="control-label"></label>
+                <input asp-for="FromDate" class="form-control" />
+                <span asp-validation-for="FromDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDate" class="control-label"></label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.customer">
+                    <option value="">--Select Customer--</option>
+                </select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DailyPrice" class="control-label"></label>
+                <input asp-for="DailyPrice" class="form-control" />
+                <span asp-validation-for="DailyPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPrice" class="control-label"></label>
+                <input asp-for="TotalPrice" class="form-control" />
+                <span asp-validation-for="TotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsPaid" class="control-label"></label><br />
+                <input type="radio" value="Paid" name="IsPaid" />Paid<br />
+                <input type="radio" value="UnPaid" name="IsPaid" />UnPaid<br />
+                <span asp-validation-for="IsPaid" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="SUBMIT" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

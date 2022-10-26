@@ -2644,3 +2644,7 @@ F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Customer\_Cu
 F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Hotel\Index.cshtml.g.cs
 F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Hotel\SaveHotel.cshtml.g.cs
 F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Hotel\_HotelPartial.cshtml.g.cs
+F:\GitHub\Hotel Management Application\obj\Debug\net5.0\HotelApp.csproj.AssemblyReference.cache
+F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Booking\Index.cshtml.g.cs
+F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Booking\SaveBooking.cshtml.g.cs
+F:\GitHub\Hotel Management Application\obj\Debug\net5.0\Razor\Views\Booking\_BookingPartial.cshtml.g.cs

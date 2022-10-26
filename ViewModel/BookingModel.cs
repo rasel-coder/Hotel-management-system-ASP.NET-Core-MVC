@@ -5,11 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HotelApp.Database
+namespace HotelApp.ViewModel
 {
-    public class Booking
+    public class BookingModel
     {
-        [Key]
         public int BookingId { get; set; }
         public int? RoomNum { get; set; }
 
@@ -19,7 +18,7 @@ namespace HotelApp.Database
         [DataType(DataType.Date)]
         public string ToDate { get; set; }
         public int? CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public string Customer { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal? DailyPrice { get; set; }

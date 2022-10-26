@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<HotelApp.ViewModel.BookingModel>
+
+<table class="table table-striped table-bordered" id="myTable">
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.BookingId) </th>
+            <th> @Html.DisplayNameFor(model => model.RoomNum) </th>
+            <th> @Html.DisplayNameFor(model => model.FromDate) </th>
+            <th> @Html.DisplayNameFor(model => model.ToDate) </th>
+            <th> @Html.DisplayNameFor(model => model.CustomerId) </th>
+            <th> @Html.DisplayNameFor(model => model.DailyPrice) </th>
+            <th> @Html.DisplayNameFor(model => model.TotalPrice) </th>
+            <th> @Html.DisplayNameFor(model => model.IsPaid) </th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("SaveBooking", "Booking", null, Context.Request.Scheme)', 'New Booking')"
+                   class="btn btn-success text-white">
+                    Create New
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.BookingId) </td>
+                <td> @Html.DisplayFor(modelItem => item.RoomNum) </td>
+                <td> @Html.DisplayFor(modelItem => item.FromDate) </td>
+                <td> @Html.DisplayFor(modelItem => item.ToDate) </td>
+                <td> @Html.DisplayFor(modelItem => item.CustomerId) </td>
+                <td> @Html.DisplayFor(modelItem => item.DailyPrice) </td>
+                <td> @Html.DisplayFor(modelItem => item.TotalPrice) </td>
+                <td> @Html.DisplayFor(modelItem => item.IsPaid) </td>
+                <td>
+                    <a onclick="showInPopup('@Url.Action("SaveBooking", "Booking", new { id = item.BookingId }, Context.Request.Scheme)', 'Update Booking')" class="btn btn-info text-white">
+                        Edit
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@item.BookingId" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                        <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

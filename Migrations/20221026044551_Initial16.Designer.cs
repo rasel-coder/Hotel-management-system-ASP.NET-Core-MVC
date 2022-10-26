@@ -4,14 +4,16 @@ using HotelApp.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelApp.Migrations
 {
     [DbContext(typeof(HotelAppContext))]
-    partial class HotelAppContextModelSnapshot : ModelSnapshot
+    [Migration("20221026044551_Initial16")]
+    partial class Initial16
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,8 +60,8 @@ namespace HotelApp.Migrations
                     b.Property<string>("FromDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IsPaid")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("IsPaid")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("RoomNum")
                         .HasColumnType("int");
